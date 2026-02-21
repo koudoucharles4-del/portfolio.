@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burkina Fashion | Vente de chaussures et habits</title>
+    <link rel="stylesheet" href="boutique.css">
+</head>
+<script>
+function afficherCategorie(idSection) {
+    // On cache toutes les sections
+    const sections = document.querySelectorAll('.section-boutique');
+    sections.forEach(sec => sec.style.display = 'none');
+
+    // On affiche uniquement celle sur laquelle on a cliqué
+    document.getElementById(idSection).style.display = 'block';
+}
+
+// Système de panier simple
+let panier = [];
+
+function ajouterAuPanier(nom, prix) {
+    panier.push({nom, prix});
+    alert(nom + " ajouté au panier !");
+    majPanier();
+}
+
+function majPanier() {
+    const divPanier = document.getElementById('contenu-panier');
+    if (panier.length === 0) {
+        divPanier.innerHTML = "<p>Votre panier est vide.</p>";
+    } else {
+        divPanier.innerHTML = panier.map(item => `<p>${item.nom} - ${item.prix} CFA</p>`).join('');
+    }
+}
+</script>
+<body>
+    <header>
+        <div class="logo">Burkina<span>Fashion</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Chaussures</a></li>
+                <li><a href="#">Habits</a></li>
+                <li><a href="#">Panier</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="promo">
+        <h1>Élégance chic</h1>
+        <p>Livraison rapide partout au Burkina Faso</p>
+    </section>
+
+    <main class="product-grid">
+        <div class="product-card">
+            <img src="images/Sneakers.jpg" alt="Sneakers">
+            <h3>Sneakers Confort</h3>
+            <p class="price">15 000 CFA</p>
+            <button class="buy-btn">Commander sur WhatsApp</button>
+        </div>
+
+        <div class="product-card">
+            <img src="images/chemise.jpg" alt="chemise">
+            <h3>Chemise Faso Dan Fani</h3>
+            <p class="price">25 000 CFA</p>
+            <button class="buy-btn">Commander sur WhatsApp</button>
+            <button class="buy-btn" onclick="ouvrirCommande('Chemise Faso Dan Fani', 25000)">
+    💰 Payer par Mobile Money
+</button>
+        </div>
+    </main>
+</body>
+</html>
